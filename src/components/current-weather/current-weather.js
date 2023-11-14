@@ -1,11 +1,18 @@
 import React from 'react'
 import './current-weather.css';
 
-const currentWeather = () => {
+const CurrentWeather = () => {
   return (
-    <div>Hello</div>
+    <div className='weather'>
+      <div className='top'>
+        <p className='city'>Belgrade</p>
+        <p className='weather-description'>Sunny</p>
+
+      </div>
+      <img alt='weather' className='weather-icon' src=''/>
+    </div>
   
   )
 }
 
-export default currentWeather;
+export default CurrentWeather;

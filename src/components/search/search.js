@@ -4,7 +4,6 @@ import { GEO_API_URL, geoApiOptions } from '../../api';
 
 const Search = ({onSearchChange}) => {
 
-
     const [search, setSearch] = useState(null);
 
     const handleOnChange = (searchData) => {
