@@ -1,9 +1,11 @@
 
 import './App.css';
 import Search from './components/search/Search';
+import Forecast from './components/forecast/forecast'
 import CurrentWeather from './components/current-weather/current-weather';
 import {WEATHER_API_URL, WEATHER_API_KEY} from './api';
 import {useState} from 'react';
+
 
 function App() {
 
@@ -13,8 +15,8 @@ function App() {
 
   const handleonSearchChange=(searchData) => {
    const [lat, lon] = searchData.value.split(" ");
-   const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
-   const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
+   const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`)
+   const forecastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`)
   
     Promise.all([currentWeatherFetch, forecastFetch ])
     .then( async (response) =>{
@@ -35,12 +37,13 @@ function App() {
   console.log(forecastWeather);
 
 
-// https://www.youtube.com/watch?v=Reny0cTTv24&list=WL&index=51&t=3314s    55:00
+
 
   return (
     <div className="container">
         <Search onSearchChange={handleonSearchChange}/>
-        <CurrentWeather data={currentWeather}/>
+        {currentWeather && <CurrentWeather data={currentWeather}/>}
+       { forecastWeather && <Forecast data={forecastWeather} />}
     </div>
   );
 }
